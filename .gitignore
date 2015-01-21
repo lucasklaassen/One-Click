@@ -1,0 +1,45 @@
+###
+# NODEJS EXPRESSJS ANGULARJS
+###
+node_modules
+public
+.tmp
+.sass-cache
+.idea
+client/bower_components
+dist
+/server/config/local.env.js
+
+###
+# system SWAP, TMP and BACKUP files
+###
+*~
+*.swp
+*.bak
+
+###
+# Windows
+###
+Thumbs.db
+
+###
+# Mac OS X directory preferences
+###
+.DS_Store
+._*
+
+###
+# System
+###
+_gsdata_
+blank.gif
+empty.empty
+*.codekit
+assets/captcha/*
+
+###
+# Sublime
+###
+sftp-config.json
+
+
