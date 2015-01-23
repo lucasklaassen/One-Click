@@ -30,16 +30,17 @@
       var websitelistSelector = "select[name='WebsiteID'] option";
       var listOfWebsites = this.getElementsInfo(websitelistSelector);
 
-      var listOfWebsiteNames = [];
+      var listOfWebsiteNames = ["true"];
 
-      for(var i = 0; i < listOfWebsites.length; i++) {
+      for(var i = 1; i < listOfWebsites.length; i++) {
         var obj = listOfWebsites[i];
         listOfWebsiteNames.push(obj.text);
       }
 
-      fs.write("listOfWebsites.json", JSON.stringify(listOfWebsiteNames, undefined, 2), 'w');
+      fs.write("server/api/listOfWebsites.json", JSON.stringify(listOfWebsiteNames, undefined, 2), 'w');
     } else {
-      fs.write("listOfWebsites.json", "false", 'w');
+      var listOfWebsiteNames = ["false"];
+      fs.write("server/api/listOfWebsites.json", JSON.stringify(listOfWebsiteNames, undefined, 2), 'w');
     }
   });
   casper.run();

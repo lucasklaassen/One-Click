@@ -3,8 +3,11 @@
 angular.module('oneClickApp')
   .factory('LoginService', function ($resource) {
     // Public API here
-    return $resource('/api/login', null,
+    var loginCheck = $resource('http://localhost:9000/api/login', null,
       {
         'check': { method:'POST' }
       });
+    return{
+      loginCheck:loginCheck
+    };
   });

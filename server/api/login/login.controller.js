@@ -11,7 +11,26 @@ function puts(error, stdout, stderr) { sys.puts(stdout) }
 
 // Get list of logins
 exports.index = function(req, res) {
-  res.send("Trying signing in... Like a man.");
+  function readJSONFile(filename, callback) {
+    fs.readFile(filename, function (err, data) {
+      if(err) {
+        callback(err);
+        return;
+      }
+      try {
+        callback(null, JSON.parse(data));
+      } catch(exception) {
+        callback(exception);
+      }
+    });
+  }
+  var initRead = function(filename) {
+    readJSONFile(filename, function (err, json) {
+      if(err) { throw err; }
+      res.send(json);
+    });
+  };
+  initRead('server/api/listOfWebsites.json');
 };
 
 exports.check = function(req, res) {
@@ -24,14 +43,9 @@ exports.check = function(req, res) {
     exec(command, puts);
   }
 
-  fs.watch('listOfWebsites.json', function (e) {
+  fs.watch('server/api/listOfWebsites.json', function (e) {
     if(e === "change"){
-      var options = {
-          json: true
-      }
-      fs.createReadStream('listOfWebsites.json', {
-        'bufferSize': 4 * 1024
-      }).pipe(res(options));
+      res.send("Validate Login");
     }
   });
 
