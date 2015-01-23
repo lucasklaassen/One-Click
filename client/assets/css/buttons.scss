@@ -1,0 +1,112 @@
+.button{
+        @include textOverflow();
+        border-radius:5px;
+        display:inline-block;
+        padding:0 20px;
+        font-size: $fontSize;
+        line-height: 52px;
+        margin:0;
+        text-align:center;
+        vertical-align:middle;
+        cursor: pointer;
+        &:focus, &:active{
+                outline:0;
+                background-color: darken(#fff, $buttonFocusDarken)
+        }
+ }
+
+ .button.hidden{
+        visibility: hidden;
+ }
+
+ .generic.button{
+        background: $genericButton;
+        color: $lightFont;
+        &:focus, &:active{
+                background-color: darken($genericButton, $buttonFocusDarken)
+        }
+        &.disabled{
+                background-color: rgba($genericButton, 0.4)
+        }
+ }
+
+ .blue.button{
+        background: $blueButton;
+        color: $lightFont;
+        &:focus, &:active{
+                background-color: darken($blueButton, $buttonFocusDarken)
+        }
+        &.disabled{
+                background-color: rgba($blueButton, 0.4)
+        }
+ }
+
+ .green.button{
+        background: $greenButton;
+        color: $lightFont;
+        &:focus, &:active{
+                background-color: darken($greenButton, $buttonFocusDarken)
+        }
+        &.disabled{
+                background-color: rgba($greenButton, 0.4)
+        }
+ }
+
+ .black.button{
+        background: #000;
+        color: $lightFont;
+        &:focus, &:active{
+                background-color: lighten(#000, $buttonFocusDarken)
+        }
+        &.disabled{
+                background-color: rgba($greenButton, 0.4)
+        }
+ }
+
+ .flat.button{
+        border-radius:0px;
+ }
+
+ .noBackground.button{
+        background:none;
+        color:#000;
+ }
+
+ .buttonBlock{
+        display:block;
+        width:100%;
+ }
+
+ button[disabled]{
+        opacity:0.5;
+ }
+
+ .buttonSpacing{
+        margin-bottom:10px !important;
+ }
+
+
+ .buttonSpacingSmall{
+        margin-bottom:1px;
+ }
+
+
+ .buttonText{
+        line-height:52px;
+ }
+
+
+ .selected.button{
+        background-color: darken($blueButton, $buttonFocusDarken);
+        box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.5);
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+
+
+        &:focus, &:active{
+                background-color: darken($blueButton, $buttonFocusDarken);
+        }
+        &.disabled{
+                background-color: rgba($blueButton, 0.4);
+        }
+ }

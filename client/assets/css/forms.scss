@@ -1,0 +1,134 @@
+// Forms
+ //Form Columns
+
+ .col2{
+         -webkit-column-count:2;
+         column-count:2;
+         -webkit-column-gap:20px;
+         column-gap:20px;
+ }
+
+ .col3{
+         -webkit-column-count:3;
+         column-count:3;
+         -webkit-column-gap:10px;
+         column-gap:10px;
+ }
+
+
+ .colBreak{
+         -webkit-column-break-after: always;
+         break-after: always;
+ }
+
+ .colAvoidBreak{
+         page-break-inside: avoid;
+         break-inside: avoid-column;
+         -webkit-column-break-inside: avoid;
+
+ }
+
+ .noColSpacing{
+         -webkit-column-gap:0;
+         column-gap:0;
+ }
+
+ .required{
+         &:after{
+                 content: " *";
+                 color:#b94a48;
+         }
+ }
+
+
+ //Form Styling
+
+
+ button{
+         -webkit-appearance:none;
+         border:0;
+ }
+
+ form label{
+         font-family: $fontMedium;
+         line-height:28px;
+         color:#36424b;
+         font-size:$fontSize;
+ }
+
+ input[type="radio"],
+ input[type="checkbox"] {
+         //Can we do something awesome here?
+ }
+
+
+ input[type="date"]{
+         -webkit-appearance: textfield;
+ }
+
+ select,
+ textarea,
+ input[type="text"],
+ input[type="password"],
+ input[type="datetime"],
+ input[type="datetime-local"],
+ input[type="date"],
+ input[type="month"],
+ input[type="time"],
+ input[type="week"],
+ input[type="number"],
+ input[type="email"],
+ input[type="url"],
+ input[type="search"],
+ input[type="tel"],
+ input[type="color"]{
+         border: 1px solid #c6c5c5;
+         font-size: $fontSizeBig;
+         line-height:44px;
+         height:46px;
+         padding: 0 $spacing;
+         width:100%;
+         border-radius:5px;
+         outline:0;
+         &.hasError{
+                 border:1px solid red ;
+         }
+         &.toBeFilled{
+                 border: 2px solid rgb(81, 203, 238);
+         }
+         &:hover, &:active, &:focus{
+                 outline: 0;
+
+         }
+         &:active, &:focus{
+                 border: 1px solid rgb(81, 203, 238);
+         }
+ }
+
+ textarea{
+         height:auto;
+ }
+
+ .formGroup{
+         @include clear();
+         margin-bottom:$spacing;
+         &:last-child{
+                 margin-bottom: 0;
+         }
+ }
+
+
+ label[required]:after{
+         content: " *";
+         color: #ff0000;
+ }
+
+
+ .ng-invalid:not(form):not(.ng-pristine){
+         border:1px solid red;
+ }
+
+
+ .button-text{
+         line-height:52px;
+ }

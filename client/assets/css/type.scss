@@ -1,0 +1,55 @@
+ .textLeft{
+        text-align:left !important;
+ }
+
+ .textRight{
+        text-align:right !important;
+ }
+
+ .textCenter{
+        text-align:center !important;
+ }
+
+ .small{
+        font-size:$fontSizeSmall;
+ }
+
+ .grey, .gray{
+        color:#9b9b9b;
+ }
+
+ //Clear Fix
+ @mixin clear() {
+         &:before,
+         &:after {
+                 content: " ";
+                 display: table;
+         }
+                 &:after {
+                 clear: both;
+         }
+ }
+
+ @mixin respond-to($media) {
+         //Only if Phone
+         @if $media == phone {
+                 @media only screen and (max-width: $breakpoint) { @content; }
+         }
+
+         //Only if Tablet
+         @else if $media == tablet {
+                 @media only screen and (min-width: $breakpoint + 1){ @content; }
+         }
+
+         @else if $media == desktop {
+                 @media only screen and (min-width: "1200px"){ @content; }
+         }
+ }
+
+ // Text overflow
+ // Requires inline-block or block for proper styling
+ @mixin textOverflow() {
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+ }

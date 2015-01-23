@@ -1,0 +1,51 @@
+// // Variables
+
+ // //Fonts
+
+ $font:          HelveticaNeue, sans-serif !default;
+ $fontMedium:      HelveticaNeue-Medium, sans-serif !default;
+ $fontSize:        15px !default;
+ $fontSizeSmall:     0.688em !default;
+ $fontSizeBig:       1.125em !default;
+ $fontSizeBigger:    1.375em !default;
+ $lineHeight:      20px !default;
+ $lightFont:       #fff !default;
+ $darkFont:        #000 !default;
+ $greyFont:        #9b9b9b !default;
+
+
+ $border:        1px solid #e5e4e4 !default;
+ $bodyBackground:    #f1f0f0 !default;
+
+ //Breakpoints
+ $breakpoint:      630px !default;
+
+
+ //Buttons
+ $blueButton:      #307ebc !default;
+ $blueButtonHover:   $blueButton !default;
+
+ $greenButton:     #6eb848 !default;
+ $greenButtonHover:    $greenButton !default;
+
+ $genericButton:     #bcbcbc !default;
+ $genericButtonHover:  $genericButton !default;
+
+ $buttonFocusDarken:   10% !default;
+ $buttonLineHeight:    44px !default;
+
+ $buttonHeight:      52px !default;
+
+
+ //Spacing
+
+ $smallSpacing:      5px !default;
+ $spacing:       10px !default;
+ $largeSpacing:      15px !default;
+
+
+ // Modals
+ $modalWidth:      470px !default;
+ $modalHeadingSpacing: 8px !default;
+ $modalHeadingHeight:  70px !default;
+ $modalBackground:   #f4f4f4 !default;

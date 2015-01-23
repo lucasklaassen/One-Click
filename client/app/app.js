@@ -1,22 +1,22 @@
 'use strict';
 
 angular.module('oneClickApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ngRoute',
-  'ui.bootstrap',
-  'LocalStorageModule'
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngRoute',
+    'ui.bootstrap',
+    'LocalStorageModule'
 ])
-  .config(function ($routeProvider, $locationProvider, localStorageServiceProvider) {
-    $routeProvider
-      .otherwise({
-        redirectTo: '/'
-      });
+    .config(function ($routeProvider, $locationProvider, localStorageServiceProvider) {
+        $routeProvider
+            .otherwise({
+                redirectTo: '/'
+            });
 
-    $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
-    localStorageServiceProvider
-          .setPrefix('oneClickApp')
-          .setStorageType('sessionStorage');
-  });
+        localStorageServiceProvider
+                    .setPrefix('oneClickApp')
+                    .setStorageType('sessionStorage');
+    });
