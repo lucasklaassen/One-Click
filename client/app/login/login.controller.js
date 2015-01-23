@@ -1,14 +1,23 @@
 'use strict';
 
 angular.module('oneClickApp')
-  .controller('LoginCtrl', function ($scope, $location, localStorageService, loginService) {
+  .controller('LoginCtrl', function ($scope, $location, localStorageService, LoginService) {
+
+    $scope.formData = {};
+    $scope.loading = false;
 
     $scope.loginValidation = function() {
+      $scope.loading = true;
       // Run creditials through casperjs
-      loginService.check({
-        "username":$scope.user.username,
-        "password":$scope.user.password
-      });
+
+     LoginService.check({
+        "formData":$scope.formData
+     }, function(res){
+      var response = res;
+      console.log(response);
+     });
+
+      $scope.formData = {};
     }
 
   });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('oneClickApp')
-  .factory('loginService', function ($resource) {
+  .factory('LoginService', function ($resource) {
     // Public API here
     return $resource('/api/login', null,
       {
