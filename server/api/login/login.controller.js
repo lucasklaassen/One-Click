@@ -23,7 +23,7 @@ function readJSONFile(filename, callback) {
     });
 };
 
-var initRead = function(filename) {
+var initRead = function(res, filename) {
     readJSONFile(filename, function (err, json) {
         if(err) { throw err; }
         res.send(json);
@@ -32,7 +32,7 @@ var initRead = function(filename) {
 
 // Get list of websites
 exports.index = function(req, res) {
-    initRead('server/api/listOfWebsites.json');
+    initRead(res, 'server/api/listOfWebsites.json');
 };
 
 // Validate user login info
