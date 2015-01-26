@@ -1,0 +1,131 @@
+.alert{
+  padding:$spacing;
+  margin-bottom:1px;
+}
+
+.modal{
+  .alert{
+    margin-left: -$largeSpacing;
+    margin-right: -$largeSpacing;
+    margin-top: -$largeSpacing;
+    margin-bottom:$spacing;
+    @include respond-to(phone){
+      margin-left: -$spacing;
+      margin-right: -$spacing;
+      margin-top: -$spacing;
+      margin-bottom:$spacing;
+    }
+  }
+}
+
+.globalError{
+  z-index:999999;
+}
+
+.error.alert{
+  background-color: #d32130;
+  border-left:5px solid darken(#d32130, 20%);
+  color:#fff;
+}
+
+.warning.alert{
+  background-color:#f5cf47;
+  border-left:5px solid darken(#f5cf47, 20%);
+  color:#fff;
+}
+
+.success.alert{
+  background-color:#63bc53;
+  border-left:5px solid darken(#63bc53, 20%);
+  color:#fff;
+}
+
+.notice.alert{
+  background-color:#465F74;
+  border-left:5px solid darken(#465F74, 20%);
+  color:#fff;
+}
+
+.notice.ios{
+  padding: 20px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  text-align: center;
+  border-radius: 20px;
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  margin-left: -124px;
+  width: 248px;
+  z-index: 1000;
+  opacity: 0;
+  display:none;
+  -webkit-transition: opacity 150ms ease-in;
+  &.cashDrawer{
+    background-image: url("/assets/images/cashDrawer.svg");
+    background-size: 48px 48px;
+    background-position: center 20px;
+    background-repeat: no-repeat;
+  }
+  &.active{
+    opacity: 1;
+    display:block;
+  }
+}
+
+.flags{
+  ul{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+  }
+  .alert{
+    &:last-child{
+      border-bottom:0;
+    }
+  }
+}
+
+
+.products{
+  @include respond-to(tablet){
+    .flags{
+      margin-left: -$spacing;
+      margin-right: -$spacing;
+      margin-top: -$spacing;
+      margin-bottom:$spacing;
+    }
+  }
+}
+
+.carrot{
+  &.red{
+    background-color: #d32130;
+    border-left:5px solid darken(#d32130, 20%);
+    color:#fff;
+  }
+
+  &.white{
+    background-color: #dddddd;
+    border-left:5px solid darken(#dddddd, 20%);
+    color:#000;
+  }
+
+  &.green{
+    background-color:#63bc53;
+    border-left:5px solid darken(#63bc53, 20%);
+    color:#fff;
+  }
+
+  &.blue{
+    background-color:#37424b;
+    border-left:5px solid darken(#37424b, 20%);
+    color:#fff;
+  }
+
+  &.yellow{
+    background-color:#f5cf47;
+    border-left:5px solid darken(#f5cf47, 20%);
+    color:#fff;
+  }
+}

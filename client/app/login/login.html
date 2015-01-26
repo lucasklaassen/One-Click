@@ -7,7 +7,7 @@
         <div class="loginBackground group">
             <div class="loading" ng-show="loading"></div>
             <div class="alert" ng-class="loginNotice.alertLevel" ng-show="loginNotice.active">{{loginNotice.alertMessage}}</div>
-            <div>
+            <div ng-hide="masterAdminForm">
                 <div class="formGroup">
                     <label>Username</label>
                     <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="Username" ng-model="formData.username" required>
@@ -19,6 +19,22 @@
                 <div class="formGroup">
                     <button type="submit" class="button green buttonBlock">Login</button>
                 </div>
+            </div>
+            <div ng-show="masterAdminForm">
+              <div class="formGroup">
+                <label>Select Websites</label>
+                <select ng-model="formData.website">
+                  <option ng-repeat="website in listOfWebsites" ng-value="website">{{website}}</option>
+                </select>
+              </div>
+              <div class="formGroup">
+                <div class="formGroup">
+                  <button type="button" ng-click="selectWebsite(formData.website)" class="button green buttonBlock">Select</button>
+                </div>
+                <div class="formGroup">
+                  <button type="button" ng-click="masterAdminForm = false" class="button generic buttonBlock">Cancel</button>
+                </div>
+              </div>
             </div>
         </div>
     </form>

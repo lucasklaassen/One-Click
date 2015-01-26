@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oneClickApp', [
+var app = angular.module('oneClickApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
@@ -19,4 +19,7 @@ angular.module('oneClickApp', [
         localStorageServiceProvider
                     .setPrefix('oneClickApp')
                     .setStorageType('sessionStorage');
+    });
+
+    app.run(function($rootScope) {
     });
