@@ -7,6 +7,9 @@ Configure your auth.js authentication file, there should be a *auth.js.example f
 
 ## Using One-Click
 
+Install PhantomJS `http://phantomjs.org/download.html`
+Install CasperJS `http://casperjs.org/`
+
 Inside of One-Click install npm dependencies:
 `npm install`
 
