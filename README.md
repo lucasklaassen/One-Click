@@ -9,6 +9,8 @@ Configure your auth.js authentication file, there should be a *auth.js.example f
 
 Install PhantomJS `http://phantomjs.org/download.html`
 Install CasperJS `http://casperjs.org/`
+Install Bower run: `npm install -g bower`
+Install Grunt run: `npm install -g grunt-cli`
 
 Inside of One-Click install npm dependencies:
 `npm install`
