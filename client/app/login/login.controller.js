@@ -18,6 +18,18 @@ angular.module('oneClickApp')
           $scope.loading= false;
         });
 
+        $scope.init = function() {
+            $scope.signedInCheck();
+        };
+
+        $scope.signedInCheck = function() {
+            if(localStorageService.isSupported) {
+                if(localStorageService.get("isLoggedIn") !== null || localStorageService.get("listOfWebsites") !== null){
+                    $location.path( "/" );
+                }
+            }
+        }
+
         $scope.loginValidation = function() {
             $scope.loading = true;
              LoginService.loginCheck.check({
@@ -60,4 +72,6 @@ angular.module('oneClickApp')
           $scope.formData = {};
           localStorageService.clearAll();
         };
+
+        $scope.init();
     });
