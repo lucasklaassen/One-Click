@@ -8,6 +8,7 @@ angular.module('oneClickApp')
         $scope.loading = false;
         $scope.masterAdminForm = false;
         $rootScope.website;
+        $rootScope.backupOfWebsites = {};
 
         $rootScope.$on('loginNotice', function(event, data){
           $scope.loginNotice = {};
@@ -34,6 +35,7 @@ angular.module('oneClickApp')
                 if(check === 'true'){
                     websites.splice(0,1);
                     $scope.listOfWebsites = websites;
+                    $rootScope.backupOfWebsites = websites;
                     localStorageService.set("isLoggedIn", true);
                     $scope.loading = false;
                     $scope.masterAdminForm = true;
@@ -50,6 +52,12 @@ angular.module('oneClickApp')
 
         $scope.selectWebsite = function() {
           $rootScope.website = $scope.formData.website;
-          $location('/');
+          $location.path( "/" );
+        };
+
+        $scope.cancelLogin = function() {
+          $scope.masterAdminForm = false;
+          $scope.formData = {};
+          localStorageService.clearAll();
         };
     });

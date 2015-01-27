@@ -1,28 +1,40 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
-
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
-    </div>
-  </div>
+<div class="one-click">
+    <form name="setupForm" class="group" novalidate ng-submit="setupValidation()">
+        <div class="logo textCenter">
+            <img src="/assets/images/logo.png" width="200">
+            <h3>One Click Setup</h3>
+        </div>
+        <div class="setupBackground group">
+            <div class="loading" ng-show="loading"></div>
+            <div class="alert" ng-class="loginNotice.alertLevel" ng-show="loginNotice.active">{{loginNotice.alertMessage}}</div>
+            <div ng-hide="masterAdminForm">
+                <div class="formGroup">
+                    <h2>{{website}}</h2>
+                </div>
+                <div class="formGroup">
+                    <label>Location</label>
+                    <!-- <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="password" placeholder="Password" ng-model="formData.password" required> -->
+                </div>
+                <div class="formGroup">
+                    <button type="submit" class="button green buttonBlock">Setup Site</button>
+                </div>
+            </div>
+            <div ng-show="masterAdminForm">
+              <div class="formGroup">
+                <label>Select Websites</label>
+                <select ng-model="formData.website">
+                  <option ng-repeat="website in listOfWebsites" ng-value="website">{{website}}</option>
+                </select>
+              </div>
+              <div class="formGroup">
+                <div class="formGroup">
+                  <button type="button" ng-click="selectWebsite(formData.website)" class="button green buttonBlock">Select</button>
+                </div>
+                <div class="formGroup">
+                  <button type="button" ng-click="cancelLogin()" class="button generic buttonBlock">Cancel</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </form>
 </div>
-
-<footer class="footer">
-  <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
-  </div>
-</footer>
