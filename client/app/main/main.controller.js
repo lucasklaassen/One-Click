@@ -21,6 +21,7 @@ angular.module('oneClickApp')
              }, function(res){
                 var response = res;
                 console.log(response);
+                $location.path( "/login" );
             });
         };
 

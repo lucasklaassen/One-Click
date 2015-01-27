@@ -8,7 +8,7 @@ var casper = require('casper').create({
   logLevel: 'debug',
   waitTimeout: 25000,
   viewportSize: {
-    width: 1000, height: 2000
+    width: 1000, height: 10000
   },
   pageSettings: {
     loadImages: true,
@@ -26,13 +26,16 @@ var consoleRead = function(userMessage) {
 
 //If username and password were not passed in as arg's ask for them now
 if(casper.cli.args.length < 7 ) {
-  var username = consoleRead("Enter username, then hit enter.");
-  var password = consoleRead("Enter password, then hit enter.");
-  var userInputWebsiteName = consoleRead("Enter Website Name, then hit enter.");
-  var userInputWebsiteURL = consoleRead("Enter the Website URL, then hit enter.");
-  var userInputWebsiteCity = consoleRead("Enter the winery's City, then hit enter.");
-  var userInputWebsiteState = consoleRead("Enter the winery's State, then hit enter.");
-  var userInputWebsiteCountry = consoleRead("Enter the winery's Country, then hit enter.");
+  casper.echo("ERROR: Please ensure all fields have been filled out.").exit();
+  /* ---- Legacy Code for Terminal ---- */
+  // var username = consoleRead("Enter username, then hit enter.");
+  // var password = consoleRead("Enter password, then hit enter.");
+  // var userInputWebsiteName = consoleRead("Enter Website Name, then hit enter.");
+  // var userInputWebsiteURL = consoleRead("Enter the Website URL, then hit enter.");
+  // var userInputWebsiteCity = consoleRead("Enter the winery's City, then hit enter.");
+  // var userInputWebsiteState = consoleRead("Enter the winery's State, then hit enter.");
+  // var userInputWebsiteCountry = consoleRead("Enter the winery's Country, then hit enter.");
+  /* ---- Legacy Code for Terminal ---- */
 } else {
   var username = casper.cli.get(0);
   var password = casper.cli.get(1);
