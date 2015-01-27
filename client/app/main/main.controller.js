@@ -9,6 +9,7 @@ angular.module('oneClickApp')
         $scope.loading = false;
         $scope.masterAdminForm = false;
         $scope.listOfCountries = ["US", "CAN", "AUS"];
+        $scope.formData.v65plus = false;
 
         $scope.init = function() {
             $scope.signedInCheck("isLoggedIn");
@@ -16,7 +17,6 @@ angular.module('oneClickApp')
 
         $scope.setupValidation = function() {
             $scope.loading = true;
-            console.log($scope.formData);
              SetupService.setupCheck.check({
                     "formData":$scope.formData,
                     "username":localStorageService.get("username"),

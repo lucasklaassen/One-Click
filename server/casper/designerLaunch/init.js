@@ -35,36 +35,32 @@ if(casper.cli.args.length < 8 ) {
   var userInputWebsiteCity = casper.cli.get(4);
   var userInputWebsiteState = casper.cli.get(5);
   var userInputWebsiteCountry = casper.cli.get(6);
-  var vin65Plus = casper.cli.get(7);
+  var vin65plus = casper.cli.get(7);
 }
 
 casper.start();
 
-casper.echo(vin65Plus);
-
-if(vin65Plus) {
-  casper.echo("hit");
-}
-
 //Init Google Analytics//
-// GA.login();
-// GA.initUATrackingCode();
+GA.login();
+GA.initUATrackingCode();
 //End Google Analytics//
 
-// vin65.login();
-// vin65.grabWebsiteID();
-// vin65.validateWebsiteID();
+vin65.login();
+vin65.grabWebsiteID();
+vin65.validateWebsiteID();
 
 //Init Product Layout Defaults
-// vin65.initProductLayouts();
+vin65.initProductLayouts();
 //End Product Layout Defaults
 
 //Init Website Settings Functions
-// vin65.websiteSettingsFunctions();
+vin65.websiteSettingsFunctions();
 //End Website Settings Functions
 
 //Init Vin65Plus Setup//
-// vin65Plus.initTwilio();
+if(vin65plus) {
+  vin65Plus.initTwilio();
+}
 //End Vin65Plus Setup//
 
 casper.run();
