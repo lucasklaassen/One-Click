@@ -11,8 +11,8 @@ function puts(error, stdout, stderr) { sys.puts(stdout) };
 
 // Validate user setup info
 exports.check = function(req, res) {
-    var username = req.body.formData.username,
-        password = req.body.formData.password,
+    var username = req.body.username,
+        password = req.body.password,
         websiteName = req.body.formData.website,
         websiteURL = req.body.formData.websiteURL,
         city = req.body.formData.city,

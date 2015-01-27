@@ -8,19 +8,6 @@
             <div class="loading" ng-show="loading"></div>
             <div class="alert" ng-class="setupNotice.alertLevel" ng-show="setupNotice.active">{{setupNotice.alertMessage}}</div>
             <div class="container-fluid" ng-hide="masterAdminForm">
-              <div class="credentials">
-                <h3>User Credentials</h3>
-                <div class="row">
-                  <div class="formGroup col-sm-6">
-                      <label>Username</label>
-                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="Username" ng-model="formData.username" required>
-                  </div>
-                  <div class="formGroup col-sm-6">
-                      <label>Password</label>
-                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="password" placeholder="Password" ng-model="formData.password" required>
-                  </div>
-                </div>
-              </div>
               <div class="websiteDetails">
                 <h3>Website Details</h3>
                 <div class="row">

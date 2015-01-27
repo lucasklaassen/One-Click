@@ -32,6 +32,8 @@ angular.module('oneClickApp')
 
         $scope.loginValidation = function() {
             $scope.loading = true;
+            localStorageService.set("username", $scope.formData.username);
+            localStorageService.set("password", $scope.formData.password);
              LoginService.loginCheck.check({
                     "formData":$scope.formData
              }, function(res){
