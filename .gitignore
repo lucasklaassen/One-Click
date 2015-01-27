@@ -42,4 +42,14 @@ assets/captcha/*
 ###
 sftp-config.json
 
+###
+# SCSS Files
+###
+.sass-cache/
 
+#AuthFiles
+auth.js
+
+# Images
+/server/casper/*.png
+/server/casper/*.jpg
