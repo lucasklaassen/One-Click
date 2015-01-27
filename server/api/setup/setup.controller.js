@@ -17,13 +17,14 @@ exports.check = function(req, res) {
         websiteURL = req.body.formData.websiteURL,
         city = req.body.formData.city,
         state = req.body.formData.state,
-        country = req.body.formData.country;
+        country = req.body.formData.country,
+        isVin65Plus = req.body.formData.isVin65Plus;
 
-  var generateSetupCommand = function(username, password, websiteName, websiteURL, city, state, country) {
+  var generateSetupCommand = function(username, password, websiteName, websiteURL, city, state, country, isVin65Plus) {
     var escapeShell = function(cmd) {
       return cmd.replace(/(["\s'$`\\])/g,'\\$1');
     };
-    return "casperjs server/casper/designerLaunch/init.js" + " " + username + " " + password + " " + escapeShell(websiteName) + " " + websiteURL + " " + escapeShell(city) + " " + escapeShell(state) + " " + country;
+    return "casperjs server/casper/designerLaunch/init.js" + " " + username + " " + password + " " + escapeShell(websiteName) + " " + websiteURL + " " + escapeShell(city) + " " + escapeShell(state) + " " + country + " " + isVin65Plus;
   };
 
   console.log(generateSetupCommand(username, password, websiteName, websiteURL, city, state, country));

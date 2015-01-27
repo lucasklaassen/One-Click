@@ -16,6 +16,7 @@ angular.module('oneClickApp')
 
         $scope.setupValidation = function() {
             $scope.loading = true;
+            console.log($scope.formData);
              SetupService.setupCheck.check({
                     "formData":$scope.formData,
                     "username":localStorageService.get("username"),

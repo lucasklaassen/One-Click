@@ -25,17 +25,8 @@ var consoleRead = function(userMessage) {
 };
 
 //If username and password were not passed in as arg's ask for them now
-if(casper.cli.args.length < 7 ) {
+if(casper.cli.args.length < 8 ) {
   casper.echo("ERROR: Please ensure all fields have been filled out.").exit();
-  /* ---- Legacy Code for Terminal ---- */
-  // var username = consoleRead("Enter username, then hit enter.");
-  // var password = consoleRead("Enter password, then hit enter.");
-  // var userInputWebsiteName = consoleRead("Enter Website Name, then hit enter.");
-  // var userInputWebsiteURL = consoleRead("Enter the Website URL, then hit enter.");
-  // var userInputWebsiteCity = consoleRead("Enter the winery's City, then hit enter.");
-  // var userInputWebsiteState = consoleRead("Enter the winery's State, then hit enter.");
-  // var userInputWebsiteCountry = consoleRead("Enter the winery's Country, then hit enter.");
-  /* ---- Legacy Code for Terminal ---- */
 } else {
   var username = casper.cli.get(0);
   var password = casper.cli.get(1);
@@ -44,25 +35,32 @@ if(casper.cli.args.length < 7 ) {
   var userInputWebsiteCity = casper.cli.get(4);
   var userInputWebsiteState = casper.cli.get(5);
   var userInputWebsiteCountry = casper.cli.get(6);
+  var vin65Plus = casper.cli.get(7);
 }
 
 casper.start();
 
+casper.echo(vin65Plus);
+
+if(vin65Plus) {
+  casper.echo("hit");
+}
+
 //Init Google Analytics//
-GA.login();
-GA.initUATrackingCode();
+// GA.login();
+// GA.initUATrackingCode();
 //End Google Analytics//
 
-vin65.login();
-vin65.grabWebsiteID();
-vin65.validateWebsiteID();
+// vin65.login();
+// vin65.grabWebsiteID();
+// vin65.validateWebsiteID();
 
 //Init Product Layout Defaults
-vin65.initProductLayouts();
+// vin65.initProductLayouts();
 //End Product Layout Defaults
 
 //Init Website Settings Functions
-vin65.websiteSettingsFunctions();
+// vin65.websiteSettingsFunctions();
 //End Website Settings Functions
 
 //Init Vin65Plus Setup//

@@ -17,7 +17,7 @@
                     <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="password" placeholder="Password" ng-model="formData.password" required>
                 </div>
                 <div class="formGroup">
-                    <button type="submit" class="button green buttonBlock">Login</button>
+                    <button type="submit" ng-disabled="loginForm.$invalid" class="button green buttonBlock">Login</button>
                 </div>
             </div>
             <div ng-show="masterAdminForm">
