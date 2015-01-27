@@ -1,3 +1,8 @@
+html {
+  padding:0;
+  background:#252524;
+}
+
 .one-click {
   background:#252524;
   top:0;
@@ -9,6 +14,19 @@
 
 form[name="setupForm"] {
   border-radius: 5px;
-  width: 400px;
-  margin: 10% auto;
+  width: 80%;
+  max-width: 990px;
+  margin: 5% auto 0;
+}
+
+.setupBackground {
+  background: #fff;
+  padding: 0 4% 4% 4%;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.websiteDetails {
+  margin-bottom: 20px;
 }

@@ -6,32 +6,57 @@
         </div>
         <div class="setupBackground group">
             <div class="loading" ng-show="loading"></div>
-            <div class="alert" ng-class="loginNotice.alertLevel" ng-show="loginNotice.active">{{loginNotice.alertMessage}}</div>
-            <div ng-hide="masterAdminForm">
-                <div class="formGroup">
-                    <h2>{{website}}</h2>
+            <div class="alert" ng-class="setupNotice.alertLevel" ng-show="setupNotice.active">{{setupNotice.alertMessage}}</div>
+            <div class="container-fluid" ng-hide="masterAdminForm">
+              <div class="credentials">
+                <h3>User Credentials</h3>
+                <div class="row">
+                  <div class="formGroup col-sm-6">
+                      <label>Username</label>
+                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="Username" ng-model="formData.username" required>
+                  </div>
+                  <div class="formGroup col-sm-6">
+                      <label>Password</label>
+                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="password" placeholder="Password" ng-model="formData.password" required>
+                  </div>
                 </div>
-                <div class="formGroup">
-                    <label>Location</label>
-                    <!-- <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="password" placeholder="Password" ng-model="formData.password" required> -->
-                </div>
-                <div class="formGroup">
-                    <button type="submit" class="button green buttonBlock">Setup Site</button>
-                </div>
-            </div>
-            <div ng-show="masterAdminForm">
-              <div class="formGroup">
-                <label>Select Websites</label>
-                <select ng-model="formData.website">
-                  <option ng-repeat="website in listOfWebsites" ng-value="website">{{website}}</option>
-                </select>
               </div>
-              <div class="formGroup">
-                <div class="formGroup">
-                  <button type="button" ng-click="selectWebsite(formData.website)" class="button green buttonBlock">Select</button>
+              <div class="websiteDetails">
+                <h3>Website Details</h3>
+                <div class="row">
+                  <div class="formGroup col-sm-6">
+                      <label>Selected Website: {{formData.website}}</label>
+                      <select ng-model="formData.website">
+                        <option ng-repeat="website in listOfWebsites" ng-value="website">{{website}}</option>
+                      </select>
+                  </div>
+                  <div class="formGroup col-sm-6">
+                      <label>Website Live URL: (Do not include http://)</label>
+                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="Website URL" ng-model="formData.websiteURL" required>
+                  </div>
                 </div>
-                <div class="formGroup">
-                  <button type="button" ng-click="cancelLogin()" class="button generic buttonBlock">Cancel</button>
+                <div class="row">
+                  <div class="formGroup col-sm-6">
+                      <label>Country</label>
+                      <select ng-model="formData.country">
+                        <option ng-repeat="country in listOfCountries" ng-value="country">{{country}}</option>
+                      </select>
+                  </div>
+                  <div class="formGroup col-sm-6">
+                      <label>State/Province:</label>
+                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="State/Province" ng-model="formData.state" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="formGroup col-sm-6">
+                      <label>City</label>
+                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="City" ng-model="formData.city" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="formGroup col-sm-3">
+                    <button type="submit" class="button green buttonBlock">Setup Site</button>
                 </div>
               </div>
             </div>

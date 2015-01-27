@@ -1,25 +1,42 @@
 'use strict';
 
 angular.module('oneClickApp')
-    .controller('MainCtrl', function ($rootScope, $scope, $http, $location, localStorageService) {
+    .controller('MainCtrl', function ($rootScope, $scope, $http, $location, localStorageService, SetupService) {
+
+        $scope.formData = {};
+        $scope.listOfWebsites = {};
+        $scope.website;
+        $scope.loading = false;
+        $scope.masterAdminForm = false;
+        $scope.listOfCountries = ["US", "CAN", "AUS"];
 
         $scope.init = function() {
             $scope.signedInCheck("isLoggedIn");
         };
 
+        $scope.setupValidation = function() {
+            $scope.loading = true;
+             SetupService.setupCheck.check({
+                    "formData":$scope.formData
+             }, function(res){
+                var response = res;
+                console.log(response);
+            });
+        };
+
         $scope.signedInCheck = function() {
             if(localStorageService.isSupported) {
-                if(localStorageService.get("isLoggedIn") === null){
+                if(localStorageService.get("isLoggedIn") === null || localStorageService.get("listOfWebsites") === null){
                     $location.path( "/login" );
+                } else {
+                    $scope.loadWebsites();
+                    $scope.formData.website = localStorageService.get("website");
                 }
-            }
-            if($rootScope.website) {
-              $scope.loadWebsites();
             }
         }
 
         $scope.loadWebsites = function() {
-
+            $scope.listOfWebsites = localStorageService.get("listOfWebsites");
         }
 
         $scope.init();
