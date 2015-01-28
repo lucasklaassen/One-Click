@@ -1,0 +1,3 @@
+[submodule "dev-one-click-casper"]
+	path = dev-one-click-casper
+	url = https://github.com/lucasklaassen/dev-one-click-casper.git
