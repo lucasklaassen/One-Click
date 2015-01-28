@@ -40,7 +40,7 @@ exports.check = function(req, res) {
     var usernameRegex = /^[a-zA-Z0-9]+$/;
     var date = moment().format();
     var validUsername = req.body.formData.username.match(usernameRegex);
-    var command = "casperjs server/casper/loginGenerateWebsites.js" + " " + req.body.formData.username + " " + req.body.formData.password;
+    var command = "casperjs server/one-click-casper-scripts/loginGenerateWebsites.js" + " " + req.body.formData.username + " " + req.body.formData.password;
     if(validUsername !== null){
         console.log(command);
         exec(command, puts);

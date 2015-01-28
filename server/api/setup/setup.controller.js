@@ -24,7 +24,7 @@ exports.check = function(req, res) {
     var escapeShell = function(cmd) {
       return cmd.replace(/(["\s'$`\\])/g,'\\$1');
     };
-    return "casperjs server/casper/designerLaunch/init.js" + " " + username + " " + password + " " + escapeShell(websiteName) + " " + websiteURL + " " + escapeShell(city) + " " + escapeShell(state) + " " + country + " " + v65plus;
+    return "casperjs server/one-click-casper-scripts/designerLaunch/init.js" + " " + username + " " + password + " " + escapeShell(websiteName) + " " + websiteURL + " " + escapeShell(city) + " " + escapeShell(state) + " " + country + " " + v65plus;
   };
 
   console.log(generateSetupCommand(username, password, websiteName, websiteURL, city, state, country, v65plus));
