@@ -10,6 +10,7 @@ client/bower_components
 dist
 dev
 /server/config/local.env.js
+/server/api/listOfWebsites.json
 
 ###
 # system SWAP, TMP and BACKUP files
