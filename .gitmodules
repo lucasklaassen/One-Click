@@ -1,6 +1,3 @@
-[submodule "one-click-casper-scripts"]
-	path = one-click-casper-scripts
-	url = https://github.com/lucasklaassen/one-click-casper-scripts.git
 [submodule "server/one-click-casper-scripts"]
 	path = server/one-click-casper-scripts
 	url = https://github.com/lucasklaassen/one-click-casper-scripts.git
