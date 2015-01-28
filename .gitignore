@@ -8,6 +8,7 @@ public
 .idea
 client/bower_components
 dist
+dev
 /server/config/local.env.js
 
 ###
