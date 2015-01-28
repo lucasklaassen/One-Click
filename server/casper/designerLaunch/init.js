@@ -41,8 +41,8 @@ if(casper.cli.args.length < 8 ) {
 casper.start();
 
 //Init Google Analytics//
-GA.login();
-GA.initUATrackingCode();
+// GA.login();
+// GA.initUATrackingCode();
 //End Google Analytics//
 
 vin65.login();
@@ -50,17 +50,17 @@ vin65.grabWebsiteID();
 vin65.validateWebsiteID();
 
 //Init Product Layout Defaults
-vin65.initProductLayouts();
+// vin65.initProductLayouts();
 //End Product Layout Defaults
 
 //Init Website Settings Functions
-vin65.websiteSettingsFunctions();
+vin65.websiteToCopyFrom();
 //End Website Settings Functions
 
 //Init Vin65Plus Setup//
-if(vin65plus) {
-  vin65Plus.initTwilio();
-}
+// if(vin65plus) {
+//   vin65Plus.initTwilio();
+// }
 //End Vin65Plus Setup//
 
 casper.run();
