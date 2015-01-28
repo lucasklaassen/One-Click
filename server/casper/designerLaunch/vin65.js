@@ -95,6 +95,40 @@ exports.initProductLayouts = function() {
 	oneClick.stageComplete('#productLayoutsComplete', 'Product Layouts were initialized!');
 };
 
+exports.initResourceBundle = function() {
+  casper.thenEvaluate(function() {
+    $('html').prepend('<iframe name="resourceBundle" class="resourceBundle"></iframe>');
+    $('.resourceBundle').css('height', '200px');
+    $('.resourceBundle').css('width', '200px');
+  });
+  casper.then(function() {
+    this.wait(2000, function() {
+      this.evaluate(function() {
+        $('.resourceBundle').attr('src', '/2014/settings/index.cfm?method=resourceBundles.editGeneral&resourceBundleElementID=7C6BED3A-C812-46AA-8174-C2190B51C866');
+      });
+    });
+    this.wait(4000, function() {
+      this.evaluate(function() {
+        $('.resourceBundle').contents().find("input[value='Update Item']").val("Update");
+        $('.resourceBundle').contents().find("form[action='index.cfm?method=resourceBundles.editGeneralSuccessJSON']").submit();
+      });
+    });
+  });
+  casper.then(function() {
+    this.wait(2000, function() {
+      this.evaluate(function() {
+        $('.resourceBundle').attr('src', '/2014/settings/index.cfm?method=resourceBundles.editGeneral&resourceBundleElementID=F7CAD609-0DC2-4455-96E3-5A1E0452C3C5');
+      });
+    });
+    this.wait(4000, function() {
+      this.evaluate(function() {
+        $('.resourceBundle').contents().find("input[value='Remove Item']").val("Remove");
+        $('.resourceBundle').contents().find("form[action='index.cfm?method=resourceBundles.editGeneralSuccessJSON']").submit();
+      });
+    });
+  });
+};
+
 exports.websiteToCopyFrom = function() {
   casper.thenEvaluate(function() {
     $('html').prepend('<iframe src="/settings/index.cfm?method=websiteSettings.loadSettings" name="websiteSettings" class="websiteSettings"></iframe');
@@ -124,7 +158,7 @@ exports.websiteToCopyFrom = function() {
               websiteToCopyFrom = true;
             } else if(listOfWebsiteNames[i].text === "Vin65 Pages Template Vin65cloud3") {
               websiteToCopyFrom = true;
-            } else if(listOfWebsiteNames[i].text === "Vin65 Pages Template Vin65Cloud") {
+            } else if(listOfWebsiteNames[i].text === "Vin65 Pages Template Vin65Cloud4") {
               websiteToCopyFrom = true;
             } else if(listOfWebsiteNames[i].text === "Vin65 Australia Template 1") {
               websiteToCopyFrom = true;

@@ -53,6 +53,10 @@ vin65.validateWebsiteID();
 vin65.initProductLayouts();
 //End Product Layout Defaults
 
+//Init Resource Bundle Defaults//
+vin65.initResourceBundle();
+//End Resource Bundle Defaults//
+
 //Init Website Settings Functions
 vin65.websiteToCopyFrom();
 //End Website Settings Functions
