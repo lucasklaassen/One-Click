@@ -53,5 +53,6 @@ sftp-config.json
 auth.js
 
 # Images
+server/*.png
 /*.png
 /*.jpg
