@@ -53,6 +53,6 @@ sftp-config.json
 auth.js
 
 # Images
-server/*.png
+server/one-click-casper-scripts/designerLaunch/*.png
 /*.png
 /*.jpg

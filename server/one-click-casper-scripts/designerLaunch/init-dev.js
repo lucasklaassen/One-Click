@@ -62,7 +62,7 @@ vin65.validateWebsiteID();
 //End Resource Bundle Defaults//
 
 //Init Parse Custom Drilldown//
-vin65.initParseCustomDrilldown();
+// vin65.initParseCustomDrilldown();
 //End Parse Custom Drilldown//
 
 //Init Vin65Plus Setup//

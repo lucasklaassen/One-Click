@@ -37,14 +37,25 @@ exports.grabWebsiteID = function() {
 
 exports.validateWebsiteID = function() {
   //Check to see if casper navigated to the correct website IMPORTANT
-  casper.waitFor(function check() {
-      return this.evaluate(function(userInputWebsiteName) {
-          return $('body > header > div > div > span.v65-title > a').text() === userInputWebsiteName + " ";
-      }, userInputWebsiteName);
-  }, function then() {
-      this.echo(userInputWebsiteName + ' was navigated to successfully');
-  }, function timeout() { // step to execute if check has failed
-      this.capture('Fatal-Error-#1.png').echo('Fatal Error #1: Screenshot Captured').exit();
+  casper.then(function() {
+    this.wait(5000, function() {
+      this.evaluate(function() {
+        $('html').prepend('<iframe src="/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings" name="websiteSettings" class="websiteSettings"></iframe>');
+      });
+      this.wait(4000, function() {
+        this.withFrame('websiteSettings', function() {
+          this.withFrame('EditWindow', function() {
+            var websitelistSelector = "#accordion > div:nth-child(1) > div > table > tbody > tr:nth-child(1) > td:nth-child(2)";
+            var listOfWebsiteNames = this.getElementsInfo(websitelistSelector);
+            if(listOfWebsiteNames[0].text === userInputWebsiteName){
+              this.echo(userInputWebsiteName + ' was navigated to successfully');
+            } else {
+              this.capture('Fatal-Error-#1.png').echo('Fatal Error #1: Screenshot Captured').exit();
+            }
+          });
+        });
+      });
+    });
   });
 };
 
