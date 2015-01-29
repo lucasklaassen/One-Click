@@ -53,5 +53,5 @@ sftp-config.json
 auth.js
 
 # Images
-/server/casper/*.png
-/server/casper/*.jpg
+/*.png
+/*.jpg
