@@ -42,7 +42,7 @@ exports.check = function(req, res) {
     var validUsername = req.body.formData.username.match(usernameRegex);
     var command = "casperjs server/one-click-casper-scripts/loginGenerateWebsites.js" + " " + req.body.formData.username + " " + req.body.formData.password;
     if(validUsername !== null){
-        console.log(command);
+        console.log("Login Attempt");
         exec(command, puts);
     }
 

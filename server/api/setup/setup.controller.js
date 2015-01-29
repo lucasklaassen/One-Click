@@ -27,7 +27,7 @@ exports.check = function(req, res) {
     return "casperjs server/one-click-casper-scripts/designerLaunch/init.js" + " " + username + " " + password + " " + escapeShell(websiteName) + " " + websiteURL + " " + escapeShell(city) + " " + escapeShell(state) + " " + country + " " + v65plus;
   };
 
-  console.log(generateSetupCommand(username, password, websiteName, websiteURL, city, state, country, v65plus));
+  console.log(generateSetupCommand(username, "password", websiteName, websiteURL, city, state, country, v65plus));
   exec(generateSetupCommand(username, password, websiteName, websiteURL, city, state, country, v65plus), puts);
 
   res.send(200);
