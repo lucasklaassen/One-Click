@@ -12,26 +12,28 @@ exports.login = function() {
 
 exports.grabWebsiteID = function() {
   casper.then(function(){
-    //build list of websites available to the user
-    var websitelistSelector = "select[name='WebsiteID'] option";
-    var listOfWebsiteNames = this.getElementsInfo(websitelistSelector);
-     for (var i = 0; i < listOfWebsiteNames.length; i++) {
-       if(listOfWebsiteNames[i].text === userInputWebsiteName) {
-         var WebsiteID = listOfWebsiteNames[i].attributes.value;
-         console.log("An ID was grabbed for the website " + userInputWebsiteName);
+    this.wait(4000, function() {
+      //build list of websites available to the user
+      var websitelistSelector = "select[name='WebsiteID'] option";
+      var listOfWebsiteNames = this.getElementsInfo(websitelistSelector);
+       for (var i = 0; i < listOfWebsiteNames.length; i++) {
+         if(listOfWebsiteNames[i].text === userInputWebsiteName) {
+           var WebsiteID = listOfWebsiteNames[i].attributes.value;
+           console.log("An ID was grabbed for the website " + userInputWebsiteName);
+         }
        }
-     }
-    if(!WebsiteID.length) {
-      this.die("Error: Website not found.");
-    }
-    var WebsiteID = utils.serialize(WebsiteID);
-    //Navigate to the website provided by the user
-    this.evaluate(function(WebsiteID) {
-      var newID = WebsiteID.replace(/"/g, '');
-      $('a.masterlink').trigger('click');
-      $('select[name="WebsiteID"]').val(newID).change();
-      $('form[action="/index.cfm?method=login.processWebsitePicker"]').submit();
-    }, WebsiteID);
+      if(!WebsiteID.length) {
+        this.die("Error: Website not found.");
+      }
+      var WebsiteID = utils.serialize(WebsiteID);
+      //Navigate to the website provided by the user
+      this.evaluate(function(WebsiteID) {
+        var newID = WebsiteID.replace(/"/g, '');
+        $('a.masterlink').trigger('click');
+        $('select[name="WebsiteID"]').val(newID).change();
+        $('form[action="/index.cfm?method=login.processWebsitePicker"]').submit();
+      }, WebsiteID);
+    });
   });
 };
 
@@ -423,7 +425,7 @@ exports.websiteSettingsFunctions = function() {
       });
     });
     this.then(function() {
-      this.wait(15000, function() {
+      this.wait(30000, function() {
         this.evaluate(function() {
           $('html').prepend('<div id="websiteFunctionsComplete"></div>');
         });
