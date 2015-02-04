@@ -18,5 +18,7 @@ Inside of One-Click install npm dependencies:
 Once that completes, run:
 `bower install`
 
-And run Grunt's server for live-reload on saved changes with:
-`grunt serve`
+From the root directory run:
+`chmod +x oneClick.command`
+
+To Run the app double click `oneClick.command`
