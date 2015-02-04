@@ -2,7 +2,7 @@ Vin65 One Click Setup
 =============
 
 ## App setup
-Configure your auth.js authentication file, there should be a *auth.js.example file
+Configure your auth.js authentication file, there should be a *authentication.js.example file
 `cd server/casper/designerLaunch`
 
 ## Using One-Click
