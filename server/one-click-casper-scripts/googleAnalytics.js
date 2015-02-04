@@ -6,10 +6,14 @@ var oneClick = require('./utilities/globalFunctions');
 var jQuery = require('./utilities/jquery');
 var auth = require('./utilities/authentication');
 var googleAnalytics = require('./googleAnalytics');
-var vin65 = require('./vin65');
-var vin65Plus = require('./vin65Plus');
+var vin65LoginAndValidate = require('./vin65LoginAndValidate');
 var twilio = require('./twilio');
 var utils = require('utils');
+
+exports.init = function() {
+  googleAnalytics.login();
+  googleAnalytics.addUATrackingCode();
+};
 
 exports.login = function() {
   casper.thenOpen('https://www.google.com/analytics', function() {
@@ -23,7 +27,7 @@ exports.login = function() {
   });
 };
 
-exports.initUATrackingCode = function() {
+exports.addUATrackingCode = function() {
   casper.then(function() {
     this.wait(4000, function() {
     casper.page.injectJs('./one-click-casper-scripts/utilities/jquery.js');
@@ -34,7 +38,7 @@ exports.initUATrackingCode = function() {
           this.wait(4000, function() {
             this.click('div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > ul > li[title="'+ analyticsMaxName +'"]');
             googleAnalytics.isPropertyFull(analyticsMaxName);
-            googleAnalytics.initVin65UAcode();
+            googleAnalytics.vin65UATrackingCode();
           });
         });
       });
@@ -108,7 +112,7 @@ exports.isPropertyFull = function(analyticsMaxName) {
   });
 };
 
-exports.initVin65UAcode = function() {
+exports.vin65UATrackingCode = function() {
   casper.waitForSelector('#ID-m-content-header > div > div > div', function() {
     this.wait(4000, function() {
       var googleAnalyticsUAcode = this.evaluate(function() {
@@ -116,11 +120,27 @@ exports.initVin65UAcode = function() {
         return UAcode;
       });
       this.echo("Tracking Code: " + googleAnalyticsUAcode);
-      vin65.login();
-      vin65.grabWebsiteID();
-      vin65.validateWebsiteID();
-      vin65.initGoogleAnalytics(googleAnalyticsUAcode);
+      vin65LoginAndValidate.init();
+      googleAnalytics.initGoogleAnalytics(googleAnalyticsUAcode);
       oneClick.stageComplete('#analyticsComplete', 'Google Anayltics were successfully added!');
     });
   });
+};
+
+
+exports.initGoogleAnalytics = function(googleAnalyticsUAcode) {
+  casper.thenEvaluate(function(googleAnalyticsUAcode) {
+    var regexMatch = googleAnalyticsUAcode.match(/-([^-]+)-/);
+    var decodeGoogleUA = regexMatch[1];
+    $('html').prepend('<iframe src="/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings" class="websiteSettings"></iframe>');
+    setTimeout(function(){
+      $('.websiteSettings').contents().find('#iFramePopup').contents().find('[name="vin65AnalyticUsername"]').val("wga1@vin65analytics.com");
+      $('.websiteSettings').contents().find('#iFramePopup').contents().find('[name="vin65UACode"]').val(googleAnalyticsUAcode);
+      $('.websiteSettings').contents().find('#iFramePopup').contents().find('[name="vin65AnalyticAccount"]').val(decodeGoogleUA);
+      setTimeout(function(){
+        $('.websiteSettings').contents().find('#iFramePopup').contents().find('form[action="index.cfm?method=websiteSettings.SettingsSuccess"]').submit();
+        $('html').prepend('<div id="analyticsComplete"></div>');
+      }, 2000);
+    }, 3000);
+  }, googleAnalyticsUAcode);
 };

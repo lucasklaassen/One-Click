@@ -3,8 +3,12 @@ var oneClick = require('./utilities/globalFunctions');
 var jQuery = require('./utilities/jquery');
 var auth = require('./utilities/authentication');
 var googleAnalytics = require('./googleAnalytics');
-var vin65 = require('./vin65');
-var vin65Plus = require('./vin65Plus');
+var vin65LoginAndValidate = require('./vin65LoginAndValidate');
+var vin65DefaultProductLayouts = require('./vin65DefaultProductLayouts');
+var vin65ResponsiveResourceBundle = require('./vin65ResponsiveResourceBundle');
+var vin65Template1Check = require('./vin65Template1Check');
+var vin65WebsiteSettingsFunctions = require('./vin65WebsiteSettingsFunctions');
+var vin65ParseCustomDrilldown = require('./vin65ParseCustomDrilldown');
 var twilio = require('./twilio');
 var utils = require('utils');
 
@@ -46,34 +50,37 @@ if(casper.cli.args.length < 8 ) {
 
 casper.start();
 
+//Init Vin65 Template 1 Check//
+vin65Template1Check.init();
+//End Vin65 Template 1 Check//
+
 //Init Google Analytics//
-googleAnalytics.login();
-googleAnalytics.initUATrackingCode();
+googleAnalytics.init();
 //End Google Analytics//
 
-vin65.login();
-vin65.grabWebsiteID();
-vin65.validateWebsiteID();
+//Init Login and Validate//
+vin65LoginAndValidate.init();
+//End Login and Validate//
 
 //Init Product Layout Defaults
-vin65.initProductLayouts();
+vin65DefaultProductLayouts.init();
 //End Product Layout Defaults
 
 //Init Website Settings Functions
-vin65.websiteToCopyFrom();
+vin65WebsiteSettingsFunctions.init();
 //End Website Settings Functions
 
 //Init Resource Bundle Defaults//
-vin65.initResourceBundle();
+vin65ResponsiveResourceBundle.init();
 //End Resource Bundle Defaults//
 
 //Init Parse Custom Drilldown//
-vin65.initParseCustomDrilldown();
+vin65ParseCustomDrilldown.init();
 //End Parse Custom Drilldown//
 
 //Init Vin65Plus Setup//
 if(vin65plus) {
-  vin65Plus.initTwilio();
+  twilio.init();
 }
 //End Vin65Plus Setup//
 
