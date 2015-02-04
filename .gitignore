@@ -51,6 +51,7 @@ sftp-config.json
 
 #AuthFiles
 auth.js
+authentication.js
 
 # Images
 server/one-click-casper-scripts/designerLaunch/*.png

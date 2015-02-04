@@ -1,8 +1,15 @@
-var utils = require('utils');
-var GA = require('./GA');
+var require = patchRequire(require);
+
+// Assets
+var oneClick = require('./utilities/globalFunctions');
+var jQuery = require('./utilities/jquery');
+var auth = require('./utilities/authentication');
+var googleAnalytics = require('./googleAnalytics');
 var vin65 = require('./vin65');
 var vin65Plus = require('./vin65Plus');
-var oneClick = require('./oneClick');
+var twilio = require('./twilio');
+var utils = require('utils');
+
 var casper = require('casper').create({
   verbose: true,
   logLevel: 'debug',

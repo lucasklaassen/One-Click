@@ -37,10 +37,10 @@
                 listOfWebsiteNames.push(obj.text);
             }
 
-            fs.write("server/api/listOfWebsites.json", JSON.stringify(listOfWebsiteNames, undefined, 2), 'w');
+            fs.write("./api/listOfWebsites.json", JSON.stringify(listOfWebsiteNames, undefined, 2), 'w');
         } else {
             var listOfWebsiteNames = ["false"];
-            fs.write("server/api/listOfWebsites.json", JSON.stringify(listOfWebsiteNames, undefined, 2), 'w');
+            fs.write("./api/listOfWebsites.json", JSON.stringify(listOfWebsiteNames, undefined, 2), 'w');
         }
     });
     casper.run();

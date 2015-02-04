@@ -14,7 +14,7 @@ var app = angular.module('oneClickApp', [
                 redirectTo: '/'
             });
 
-        $locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(false);
 
         localStorageServiceProvider
                     .setPrefix('oneClickApp')

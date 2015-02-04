@@ -1,9 +1,15 @@
 //Google Analytics Setup
 var require = patchRequire(require);
-var utils = require('utils');
-var auth = require('./auth');
+
+// Assets
+var oneClick = require('./utilities/globalFunctions');
+var jQuery = require('./utilities/jquery');
+var auth = require('./utilities/authentication');
+var googleAnalytics = require('./googleAnalytics');
 var vin65 = require('./vin65');
-var oneClick = require('./oneClick');
+var vin65Plus = require('./vin65Plus');
+var twilio = require('./twilio');
+var utils = require('utils');
 
 exports.login = function() {
   casper.thenOpen('https://www.google.com/analytics', function() {
@@ -20,15 +26,15 @@ exports.login = function() {
 exports.initUATrackingCode = function() {
   casper.then(function() {
     this.wait(4000, function() {
-      auth.jquerySrc();
-      var analyticsMaxName = GA.findGreatestProperty();
+    casper.page.injectJs('./one-click-casper-scripts/utilities/jquery.js');
+      var analyticsMaxName = googleAnalytics.findGreatestProperty();
       this.wait(4000, function() {
         this.echo(analyticsMaxName);
         this.thenOpen('https://www.google.com/analytics/web/?hl=en#management/Settings', function() {
           this.wait(4000, function() {
             this.click('div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > ul > li[title="'+ analyticsMaxName +'"]');
-            GA.isPropertyFull(analyticsMaxName);
-            GA.initVin65UAcode();
+            googleAnalytics.isPropertyFull(analyticsMaxName);
+            googleAnalytics.initVin65UAcode();
           });
         });
       });
@@ -61,7 +67,7 @@ exports.findGreatestProperty = function() {
 
 exports.isPropertyFull = function(analyticsMaxName) {
   casper.wait(4000, function() {
-    this.page.injectJs(auth.jquerySrc());
+    this.page.includeJs('http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
     this.waitFor(function check() {
         return !this.exists("[title='Limit reached']");
     }, function then() {    // step to execute when check() is ok

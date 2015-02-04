@@ -32,7 +32,7 @@ var initRead = function(res, filename) {
 
 // Get list of websites
 exports.index = function(req, res) {
-    initRead(res, 'server/api/listOfWebsites.json');
+    initRead(res, './api/listOfWebsites.json');
 };
 
 // Validate user login info
@@ -40,13 +40,13 @@ exports.check = function(req, res) {
     var usernameRegex = /^[a-zA-Z0-9]+$/;
     var date = moment().format();
     var validUsername = req.body.formData.username.match(usernameRegex);
-    var command = "casperjs server/one-click-casper-scripts/loginGenerateWebsites.js" + " " + req.body.formData.username + " " + req.body.formData.password;
+    var command = "casperjs ./one-click-casper-scripts/loginGenerateWebsites.js" + " " + req.body.formData.username + " " + req.body.formData.password;
     if(validUsername !== null){
         console.log("Login Attempt");
         exec(command, puts);
     }
 
-    fs.watch('server/api/listOfWebsites.json', function (e) {
+    fs.watch('./api/listOfWebsites.json', function (e) {
         if(e === "change"){
             res.send(200);
         }

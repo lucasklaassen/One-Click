@@ -1,8 +1,15 @@
 //Vin65 Admin Panel Setup
 var require = patchRequire(require);
+
+// Assets
+var oneClick = require('./utilities/globalFunctions');
+var jQuery = require('./utilities/jquery');
+var auth = require('./utilities/authentication');
+var googleAnalytics = require('./googleAnalytics');
+var vin65 = require('./vin65');
+var vin65Plus = require('./vin65Plus');
+var twilio = require('./twilio');
 var utils = require('utils');
-var auth = require('./auth');
-var oneClick = require('./oneClick');
 
 exports.login = function() {
   casper.thenOpen('https://www.vin65.com/components/clientLogin', function() {
@@ -194,7 +201,7 @@ exports.websiteToCopyFrom = function() {
               websiteToCopyFrom = true;
             } else if(listOfWebsiteNames[i].text === "Vin65 Pages Template Vin65Cloud") {
               websiteToCopyFrom = true;
-            } else if(listOfWebsiteNames[i].text === "Vin65 Pages Template Vin65Cloud2") {
+            } else if(listOfWebsiteNames[i].text === "Vin65 Pages Template Vin65Cloud2 ") {
               websiteToCopyFrom = true;
             } else if(listOfWebsiteNames[i].text === "Vin65 Pages Template Vin65cloud3") {
               websiteToCopyFrom = true;

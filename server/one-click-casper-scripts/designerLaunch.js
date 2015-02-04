@@ -1,8 +1,14 @@
-var utils = require('utils');
-var GA = require('./GA');
+// Assets
+var oneClick = require('./utilities/globalFunctions');
+var jQuery = require('./utilities/jquery');
+var auth = require('./utilities/authentication');
+var googleAnalytics = require('./googleAnalytics');
 var vin65 = require('./vin65');
 var vin65Plus = require('./vin65Plus');
-var oneClick = require('./oneClick');
+var twilio = require('./twilio');
+var utils = require('utils');
+
+// Casper Module
 var casper = require('casper').create({
   verbose: true,
   logLevel: 'debug',
@@ -41,8 +47,8 @@ if(casper.cli.args.length < 8 ) {
 casper.start();
 
 //Init Google Analytics//
-GA.login();
-GA.initUATrackingCode();
+googleAnalytics.login();
+googleAnalytics.initUATrackingCode();
 //End Google Analytics//
 
 vin65.login();
