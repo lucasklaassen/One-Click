@@ -422,6 +422,14 @@ exports.websiteSettingsFunctions = function() {
         }, websiteSettingsPagesArray);
       });
       this.wait(1000, function() {
+        var copyPages = initSelectOptions();
+        this.wait(2000, function() {
+          if(copyPages === false) {
+            this.echo("There are no websites to copy pages from. :( ").exit();
+          }
+        });
+      });
+      this.wait(1000, function() {
         this.evaluate(function(userInputWebsiteCountry) {
           $('.websiteSettingsFunctions').contents().find('[name="countryCode"]').val(userInputWebsiteCountry);
         }, userInputWebsiteCountry);
