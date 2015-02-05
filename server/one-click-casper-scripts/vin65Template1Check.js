@@ -12,18 +12,9 @@ var utils = require('utils');
 
 exports.init = function() {
   vin65LoginAndValidate.init();
-  casper.thenEvaluate(function() {
-    $('html').prepend('<iframe src="/settings/index.cfm?method=websiteSettings.loadSettings" name="websiteSettings" class="websiteSettings"></iframe');
-    $('html').prepend('<iframe name="websiteSettingsFunctions" class="websiteSettingsFunctions"></iframe>');
-    $('.websiteSettingsFunctions').css('height', '200px');
-    $('.websiteSettingsFunctions').css('width', '200px');
-  });
+  oneClick.addFrame("websiteSettings", "/settings/index.cfm?method=websiteSettings.loadSettings");
+  oneClick.addFrame("websiteSettingsFunctions", "/settings/index.cfm?method=websiteSettings.CopyPages");
   casper.then(function() {
-    this.wait(2000, function() {
-      this.evaluate(function() {
-        $('.websiteSettingsFunctions').attr('src', '/settings/index.cfm?method=websiteSettings.CopyPages');
-      });
-    });
     this.then(function() {
       this.withFrame('websiteSettingsFunctions', function() {
         var websitelistSelector = "select[name='fromWebsiteID'] option";
@@ -50,6 +41,8 @@ exports.init = function() {
         }
         if(!websiteToCopyFrom) {
           this.echo("No Websites to copy from").exit();
+        } else {
+          this.echo("Websites to copy from:" + websiteToCopyFrom);
         }
       });
     });

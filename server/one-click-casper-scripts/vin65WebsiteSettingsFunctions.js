@@ -22,215 +22,130 @@ exports.init = function() {
   '/settings/index.cfm?method=websiteSettings.CopyShipping',
   '/settings/index.cfm?method=websiteSettings.editQuickSettings'];
   var initCheckboxes = function() {
-    casper.evaluate(function() {
-      $('.websiteSettingsFunctions').contents().find('input').prop('checked', true);
+    casper.wait(1000, function() {
+      casper.evaluate(function() {
+        $('.websiteSettingsFunctions').contents().find('input').prop('checked', true);
+      });
     });
   }
   var initSelectOptions = function() {
-    casper.evaluate(function() {
-      var copyPagesBoolean;
-      var setWebsiteID = function(id) {
-        $('.websiteSettingsFunctions').contents().find("select[name='fromWebsiteID']").val(id);
-      }
-      $('.websiteSettingsFunctions').contents().find("select[name='fromWebsiteID']").find('option').each(function(){
-        if($(this).text() === "Vin65 Designer Launch Template") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else if($(this).text() === "Vin65 Pages Template Vin65") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else if($(this).text() === "Vin65 Pages Template Vin65Cloud") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else if($(this).text() === "Vin65 Pages Template Vin65Cloud2 ") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else if($(this).text() === "Vin65 Pages Template Vin65cloud3") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else if($(this).text() === "Vin65 Pages Template Vin65Cloud4") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else if($(this).text() === "Vin65 Australia Template 1") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else if($(this).text() === "Vin65 Pages Template IBG") {
-          setWebsiteID($(this).val());
-          copyPagesBoolean = true;
-          return false;
-        } else {
-          copyPagesBoolean = false;
+    casper.wait(1000, function() {
+      casper.evaluate(function() {
+        var copyPagesBoolean;
+        var setWebsiteID = function(id) {
+          $('.websiteSettingsFunctions').contents().find("select[name='fromWebsiteID']").val(id);
         }
+        $('.websiteSettingsFunctions').contents().find("select[name='fromWebsiteID']").find('option').each(function(){
+          if($(this).text() === "Vin65 Designer Launch Template") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Pages Template Vin65") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Pages Template Vin65Cloud") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Pages Template Vin65Cloud2 ") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Pages Template Vin65cloud3") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Pages Template Vin65Cloud4") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Australia Template 1") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Pages Template IBG") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else {
+            copyPagesBoolean = false;
+          }
+        });
+        return copyPagesBoolean;
       });
-      return copyPagesBoolean;
     });
   }
   var initSubmit = function() {
-    casper.withFrame('websiteSettingsFunctions', function() {
-      this.click('#popupFooterRight > a > img');
+    casper.wait(1000, function() {
+      casper.withFrame('websiteSettingsFunctions', function() {
+        this.click('#popupFooterRight > a > img');
+      });
     });
   }
   //Website Settings Automation
+  oneClick.addFrame("websiteSettings", "/settings/index.cfm?method=websiteSettings.loadSettings");
   casper.then(function() {
-      this.evaluate(function() {
-        $('html').prepend('<iframe src="/settings/index.cfm?method=websiteSettings.loadSettings" name="websiteSettings" class="websiteSettings"></iframe');
-        $('html').prepend('<iframe name="websiteSettingsFunctions" class="websiteSettingsFunctions"></iframe>');
-      });
     this.wait(1000, function(){
-      this.evaluate(function(websiteSettingsPagesArray) {
-        $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[0]);
-      }, websiteSettingsPagesArray);
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[0]);
     });
-    this.wait(1000, function(){
-      initCheckboxes();
-      this.wait(1000, function() {
-        initSubmit();
-      });
-    });
+    initCheckboxes();
+    initSubmit();
     this.wait(4000, function() {
-      this.evaluate(function(websiteSettingsPagesArray) {
-        $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[1]);
-      }, websiteSettingsPagesArray);
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[1]);
     });
-    this.wait(1000, function(){
-      var copyPages = initSelectOptions();
-      this.wait(2000, function() {
-        if(copyPages === false) {
-          this.echo("There are no websites to copy pages from. :( ").exit();
-        }
-      });
-      this.wait(1000, function() {
-        initSubmit();
-      });
-      this.wait(4000, function() {
-        this.evaluate(function(websiteSettingsPagesArray) {
-          $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[2]);
-        }, websiteSettingsPagesArray);
-      });
-      this.wait(1000, function() {
-        initCheckboxes();
-      });
-      this.wait(1000, function() {
-        initSubmit();
-      });
-    });
+    initSelectOptions();
+    initSubmit();
     this.wait(4000, function() {
-      this.evaluate(function(websiteSettingsPagesArray) {
-        $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[3]);
-      }, websiteSettingsPagesArray);
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[2]);
     });
-    this.wait(1000, function() {
-      initCheckboxes();
-    });
-    this.wait(1000, function() {
-      initSubmit();
-    });
+    initCheckboxes();
+    initSubmit();
     this.wait(4000, function() {
-      this.evaluate(function(websiteSettingsPagesArray) {
-        $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[4]);
-      }, websiteSettingsPagesArray);
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[3]);
     });
-    this.wait(1000, function() {
-      var copyPages = initSelectOptions();
-      this.wait(2000, function() {
-        if(copyPages === false) {
-          this.echo("There are no websites to copy pages from. :( ").exit();
-        }
-      });
-    });
-    this.wait(1000, function() {
-      initCheckboxes();
-    });
-    this.wait(1000, function() {
-      initSubmit();
-    });
+    initCheckboxes();
+    initSubmit();
     this.wait(4000, function() {
-      this.evaluate(function(websiteSettingsPagesArray) {
-        $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[5]);
-      }, websiteSettingsPagesArray);
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[4]);
     });
-    this.wait(1000, function() {
-      var copyPages = initSelectOptions();
-      this.wait(2000, function() {
-        if(copyPages === false) {
-          this.echo("There are no websites to copy pages from. :( ").exit();
-        }
-      });
-    });
-    this.wait(1000, function() {
-      initSubmit();
-    });
+    initSelectOptions();
+    initCheckboxes();
+    initSubmit();
     this.wait(4000, function() {
-      this.evaluate(function(websiteSettingsPagesArray) {
-        $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[6]);
-      }, websiteSettingsPagesArray);
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[5]);
     });
-    this.wait(1000, function() {
-      var copyPages = initSelectOptions();
-      this.wait(2000, function() {
-        if(copyPages === false) {
-          this.echo("There are no websites to copy pages from. :( ").exit();
-        }
-      });
-    });
-    this.wait(1000, function() {
-      initSubmit();
-    });
+    initSelectOptions();
+    initSubmit();
     this.wait(4000, function() {
-      this.evaluate(function(websiteSettingsPagesArray) {
-        $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[7]);
-      }, websiteSettingsPagesArray);
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[6]);
     });
-    this.wait(1000, function() {
-      var copyPages = initSelectOptions();
-      this.wait(2000, function() {
-        if(copyPages === false) {
-          this.echo("There are no websites to copy pages from. :( ").exit();
-        }
-      });
+    initSelectOptions();
+    initSubmit();
+    this.wait(4000, function() {
+      oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[7]);
     });
-    this.wait(1000, function() {
-      initSubmit();
-    });
+    initSelectOptions();
+    initSubmit();
     // Quick Settings
     this.then(function() {
       this.wait(4000, function(){
-        this.evaluate(function(websiteSettingsPagesArray) {
-          $('.websiteSettingsFunctions').attr("src", websiteSettingsPagesArray[8]);
-        }, websiteSettingsPagesArray);
+        oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[8]);
       });
-      this.wait(1000, function() {
-        var copyPages = initSelectOptions();
-        this.wait(2000, function() {
-          if(copyPages === false) {
-            this.echo("There are no websites to copy pages from. :( ").exit();
-          }
-        });
-      });
+      initSelectOptions();
       this.wait(1000, function() {
         this.evaluate(function(userInputWebsiteCountry) {
           $('.websiteSettingsFunctions').contents().find('[name="countryCode"]').val(userInputWebsiteCountry);
         }, userInputWebsiteCountry);
         initSelectOptions();
       });
-      this.wait(1000, function() {
-        initSubmit();
-      });
+      initSubmit();
     });
     this.then(function() {
-      this.wait(30000, function() {
-        this.evaluate(function() {
-          $('html').prepend('<div id="websiteFunctionsComplete"></div>');
-        });
+      this.wait(35000, function() {
+        oneClick.addFrame("websiteFunctionsComplete");
       });
     });
   });
-oneClick.stageComplete('#websiteFunctionsComplete', 'Website Functions were run successfully!');
+oneClick.stageComplete('.websiteFunctionsComplete', 'Website Functions were run successfully!');
 };

@@ -13,7 +13,6 @@ var utils = require('utils');
 exports.init = function() {
   twilio.login();
   twilio.buyTwilioNumber();
-  twilio.addTwilioNumber();
 };
 
 exports.login = function() {
@@ -31,7 +30,13 @@ exports.buyTwilioNumber = function() {
       this.wait(5000, function() {
         this.click('.selectize-control.country > .selectize-input');
         this.wait(1000, function(){
-          this.click('.selectize-dropdown.country > .selectize-dropdown-content > [data-value="'+userInputWebsiteCountry+'"]');
+          if(userInputWebsiteCountry === "CAN") {
+            this.click('.selectize-dropdown.country > .selectize-dropdown-content > [data-value="CA"]');
+          } else if(userInputWebsiteCountry === "AUS") {
+            this.click('.selectize-dropdown.country > .selectize-dropdown-content > [data-value="AU"]');
+          } else {
+            this.click('.selectize-dropdown.country > .selectize-dropdown-content > [data-value="'+userInputWebsiteCountry+'"]');
+          }
         });
         this.wait(1000, function() {
           console.log('twilio sequence');
@@ -80,7 +85,8 @@ exports.buyTwilioNumber = function() {
               this.echo("SMS Number: " + SMSNumber);
               vin65LoginAndValidate.init();
               twilio.addTwilioNumber(SMSNumber);
-              oneClick.stageComplete('#twilioComplete', 'Twilio SMS Number was successfully added!');
+              twilio.sendSupportEmail(SMSNumber);
+              oneClick.stageComplete('.twilioComplete', 'Twilio SMS Number was successfully added!');
             });
           });
         });
@@ -91,15 +97,8 @@ exports.buyTwilioNumber = function() {
 
 exports.addTwilioNumber = function(SMSNumber) {
   casper.then(function() {
-    this.evaluate(function() {
-      $('html').prepend('<iframe src="/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings" class="websiteSettings"></iframe>');
-      $('html').prepend('<iframe name="wineDirectSettings" class="wineDirectSettings"></iframe>');
-    });
-    this.wait(4000, function() {
-      this.evaluate(function() {
-        $('.wineDirectSettings').attr('src', '/settings/index.cfm?method=websiteSettings.WineDirectSettings');
-      });
-    });
+    oneClick.addFrame("websiteSettings", "/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings");
+    oneClick.addFrame("wineDirectSettings", "/settings/index.cfm?method=websiteSettings.WineDirectSettings");
     this.wait(4000, function() {
       this.evaluate(function(SMSNumber) {
         $('.wineDirectSettings').contents().find('[name="fromPhoneNumber"]').val(SMSNumber);
@@ -109,7 +108,47 @@ exports.addTwilioNumber = function(SMSNumber) {
     this.wait(4000, function() {
       this.evaluate(function() {
         $('.wineDirectSettings').contents().find('form[action="index.cfm?method=websiteSettings.WineDirectSettingsSuccess"]').submit();
-        $('html').prepend('<div id="twilioComplete"></div>');
+      });
+      oneClick.addFrame("twilioComplete");
+    });
+  });
+};
+
+
+exports.sendSupportEmail = function(SMSNumber) {
+  casper.then(function(){
+    oneClick.addFrame("supportEmail", "/2014/support/index.cfm?method=ticketsAdmin.add");
+    casper.then(function(){
+      this.wait(4000, function() {
+        //build list of websites available to the user
+        this.evaluate(function() {
+          $('.websiteSettings').remove();
+        });
+        this.withFrame('supportEmail', function() {
+          this.capture("setupSupport1.png");
+          var websitelistSelector = "select[name='reporterWebsiteID'] option";
+          var listOfWebsiteNames = this.getElementsInfo(websitelistSelector);
+           for (var i = 0; i < listOfWebsiteNames.length; i++) {
+             if(listOfWebsiteNames[i].text === userInputWebsiteName) {
+               var WebsiteID = listOfWebsiteNames[i].attributes.value;
+               console.log("An ID was grabbed for the website " + userInputWebsiteName);
+             }
+           }
+          var WebsiteID = utils.serialize(WebsiteID).replace(/"/g, '');
+          this.then(function() {
+            this.wait(3000, function() {
+              this.fill('[action="index.cfm?method=ticketsAdmin.addSuccessJSON"]', {
+                  'reporterWebsiteID': WebsiteID,
+                  'ticketCategoryID': "D6B6EDE8-0DDB-BEE7-9D5C-3A8F0EDE7EA0",
+                  'reporter': userInputWebsiteName,
+                  'reporterEmail': userInputWineryEmail,
+                  'summary': "Text Message Feature Setup",
+                  'ticketDescription': 'Vin65+ Request for Text Message Feature. <p>Hello '+ userInputWebsiteName +',</p><p>Thank you for signing up for to the Vin65+ package, we are excited to bring you each of the new features included in the plan. We have completed the setup of the Text Message Feature and wanted to notify you of your new text message number it is:</p><p><strong>'+ SMSNumber +'</strong></p><p>For setup information please see: <a href="http://documentation.vin65.com/Contacts/Text-Messages">http://documentation.vin65.com/Contacts/Text-Messages</a></p><p>If you have any questions or concerns please respond to this ticket or contact us at support@vin65.com.&nbsp;</p><p>Thanks very much,</p><p>'+ userFullName +'</p>',
+                  'emailReporter': 1
+              }, true);
+            });
+          });
+        });
       });
     });
   });

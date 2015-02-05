@@ -24,17 +24,21 @@
                 </div>
                 <div class="row">
                   <div class="formGroup col-sm-6">
+                      <label>Winery Email</label>
+                      <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="Winery Email" ng-model="formData.wineryEmail" required>
+                  </div>
+                  <div class="formGroup col-sm-6">
                       <label>Country</label>
                       <select ng-model="formData.country" required>
                         <option ng-repeat="country in listOfCountries" ng-value="country">{{country}}</option>
                       </select>
                   </div>
+                </div>
+                <div class="row">
                   <div class="formGroup col-sm-6">
                       <label>State/Province:</label>
                       <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="State/Province" ng-model="formData.state" required>
                   </div>
-                </div>
-                <div class="row">
                   <div class="formGroup col-sm-6">
                       <label>City</label>
                       <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="City" ng-model="formData.city" required>

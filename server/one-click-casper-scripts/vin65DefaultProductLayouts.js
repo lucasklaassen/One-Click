@@ -12,13 +12,9 @@ var utils = require('utils');
 
 exports.init = function() {
   casper.waitForSelector('#iFrameWrapper', function() {
-    this.wait(3000,function(){
-      this.evaluate(function() {
-        $('html').prepend('<iframe src="/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings" class="websiteSettings"></iframe>');
-        setTimeout(function(){
-          $('html').prepend('<iframe src="/settings/index.cfm?method=websiteSettings.ProductSettings" name="websiteSettingsTwo" class="websiteSettingsTwo"></iframe>');
-        },6000);
-      });
+    oneClick.addFrame("websiteSettings", "/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings");
+    this.wait(6000, function() {
+      oneClick.addFrame("websiteSettingsTwo", "/settings/index.cfm?method=websiteSettings.ProductSettings");
     });
   });
   casper.then(function() {
@@ -32,10 +28,8 @@ exports.init = function() {
           $('form[action="index.cfm?method=websiteSettings.ProductSettingsSuccess"]').submit();
         });
       });
-      this.evaluate(function() {
-        $('html').prepend('<div id="productLayoutsComplete"></div>');
-      });
+      oneClick.addFrame("productLayoutsComplete");
     });
   });
-  oneClick.stageComplete('#productLayoutsComplete', 'Product Layouts were initialized!');
+  oneClick.stageComplete('.productLayoutsComplete', 'Product Layouts were initialized!');
 };

@@ -19,6 +19,7 @@ angular.module('oneClickApp')
             $scope.loading = true;
              SetupService.setupCheck.check({
                     "formData":$scope.formData,
+                    "fullname":localStorageService.get("fullname"),
                     "username":localStorageService.get("username"),
                     "password":localStorageService.get("password")
              }, function(res){

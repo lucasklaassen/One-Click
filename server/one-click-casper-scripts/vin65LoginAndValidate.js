@@ -52,9 +52,7 @@ exports.validateWebsiteID = function() {
   //Check to see if casper navigated to the correct website IMPORTANT
   casper.then(function() {
     this.wait(5000, function() {
-      this.evaluate(function() {
-        $('html').prepend('<iframe src="/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings" name="websiteSettings" class="websiteSettings"></iframe>');
-      });
+      oneClick.addFrame("websiteSettings", "/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DwebsiteSettings");
       this.wait(4000, function() {
         this.withFrame('websiteSettings', function() {
           this.withFrame('EditWindow', function() {

@@ -10,6 +10,7 @@ var vin65Template1Check = require('./vin65Template1Check');
 var vin65WebsiteSettingsFunctions = require('./vin65WebsiteSettingsFunctions');
 var vin65ParseCustomDrilldown = require('./vin65ParseCustomDrilldown');
 var twilio = require('./twilio');
+var twilioSendSupportEmail = require('./twilioSendSupportEmail');
 var utils = require('utils');
 
 // Casper Module
@@ -35,28 +36,30 @@ var consoleRead = function(userMessage) {
 };
 
 //If username and password were not passed in as arg's ask for them now
-if(casper.cli.args.length < 8 ) {
+if(casper.cli.args.length < 10 ) {
   casper.echo("ERROR: Please ensure all fields have been filled out.").exit();
 } else {
   var username = casper.cli.get(0);
   var password = casper.cli.get(1);
-  var userInputWebsiteName = casper.cli.get(2);
-  var userInputWebsiteURL = casper.cli.get(3);
-  var userInputWebsiteCity = casper.cli.get(4);
-  var userInputWebsiteState = casper.cli.get(5);
-  var userInputWebsiteCountry = casper.cli.get(6);
-  var vin65plus = casper.cli.get(7);
+  var userFullName = casper.cli.get(2);
+  var userInputWebsiteName = casper.cli.get(3);
+  var userInputWebsiteURL = casper.cli.get(4);
+  var userInputWineryEmail = casper.cli.get(5);
+  var userInputWebsiteCity = casper.cli.get(6);
+  var userInputWebsiteState = casper.cli.get(7);
+  var userInputWebsiteCountry = casper.cli.get(8);
+  var vin65plus = casper.cli.get(9);
 }
 
 casper.start();
 
 //Init Vin65 Template 1 Check//
-vin65Template1Check.init();
+// vin65Template1Check.init();
 //End Vin65 Template 1 Check//
 
 //Init Google Analytics//
-googleAnalytics.login();
-googleAnalytics.addUATrackingCode();
+// googleAnalytics.login();
+// googleAnalytics.addUATrackingCode();
 //End Google Analytics//
 
 //Init Login and Validate//
@@ -64,19 +67,19 @@ vin65LoginAndValidate.init();
 //End Login and Validate//
 
 //Init Product Layout Defaults
-vin65DefaultProductLayouts.init();
+// vin65DefaultProductLayouts.init();
 //End Product Layout Defaults
 
 //Init Website Settings Functions
-vin65WebsiteSettingsFunctions.init();
+// vin65WebsiteSettingsFunctions.init();
 //End Website Settings Functions
 
 //Init Resource Bundle Defaults//
-vin65ResponsiveResourceBundle.init();
+// vin65ResponsiveResourceBundle.init();
 //End Resource Bundle Defaults//
 
 //Init Parse Custom Drilldown//
-vin65ParseCustomDrilldown.init();
+// vin65ParseCustomDrilldown.init();
 //End Parse Custom Drilldown//
 
 //Init Vin65Plus Setup//

@@ -11,17 +11,8 @@ var twilio = require('./twilio');
 var utils = require('utils');
 
 exports.init = function() {
-  casper.thenEvaluate(function() {
-    $('html').prepend('<iframe name="resourceBundle" class="resourceBundle"></iframe>');
-    $('.resourceBundle').css('height', '200px');
-    $('.resourceBundle').css('width', '200px');
-  });
+  oneClick.addFrame("resourceBundle", "/2014/settings/index.cfm?method=resourceBundles.editGeneral&resourceBundleElementID=7C6BED3A-C812-46AA-8174-C2190B51C866");
   casper.then(function() {
-    this.wait(2000, function() {
-      this.evaluate(function() {
-        $('.resourceBundle').attr('src', '/2014/settings/index.cfm?method=resourceBundles.editGeneral&resourceBundleElementID=7C6BED3A-C812-46AA-8174-C2190B51C866');
-      });
-    });
     this.wait(4000, function() {
       this.evaluate(function() {
         $('.resourceBundle').contents().find("input[value='Update Item']").val("Update");
@@ -30,11 +21,7 @@ exports.init = function() {
     });
   });
   casper.then(function() {
-    this.wait(2000, function() {
-      this.evaluate(function() {
-        $('.resourceBundle').attr('src', '/2014/settings/index.cfm?method=resourceBundles.editGeneral&resourceBundleElementID=F7CAD609-0DC2-4455-96E3-5A1E0452C3C5');
-      });
-    });
+  oneClick.addFrame("resourceBundle", "/2014/settings/index.cfm?method=resourceBundles.editGeneral&resourceBundleElementID=F7CAD609-0DC2-4455-96E3-5A1E0452C3C5");
     this.wait(4000, function() {
       this.evaluate(function() {
         $('.resourceBundle').contents().find("input[value='Remove Item']").val("Remove");

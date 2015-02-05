@@ -9,6 +9,10 @@
             <div class="alert" ng-class="loginNotice.alertLevel" ng-show="loginNotice.active">{{loginNotice.alertMessage}}</div>
             <div ng-hide="masterAdminForm">
                 <div class="formGroup">
+                    <label>Your Full Name</label>
+                    <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="Full Name" ng-model="formData.fullname" required>
+                </div>
+                <div class="formGroup">
                     <label>Username</label>
                     <input autocorrect="off" autocapitalize="off" ng-class="hasError" type="text" placeholder="Username" ng-model="formData.username" required>
                 </div>

@@ -11,4 +11,13 @@ exports.stageComplete = function(selector, message) {
       window.location.reload();
     });
   });
-}
+};
+
+exports.addFrame = function(frameName, src) {
+  casper.thenEvaluate(function(frameName, src) {
+    $('html').prepend('<iframe name="' + frameName + '" class="' + frameName + '"></iframe>');
+    if(src.length){
+      $("[name='"+frameName+"']").attr('src', src);
+    }
+  }, frameName, src);
+};
