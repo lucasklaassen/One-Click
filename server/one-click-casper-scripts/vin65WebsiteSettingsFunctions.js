@@ -33,9 +33,9 @@ exports.init = function() {
       casper.evaluate(function() {
         var copyPagesBoolean;
         var setWebsiteID = function(id) {
-          $('.websiteSettingsFunctions').contents().find("select[name='fromWebsiteID']").val(id);
+          $('.websiteSettingsFunctions').contents().find('select').not("[name='countryCode']").val(id);
         }
-        $('.websiteSettingsFunctions').contents().find("select[name='fromWebsiteID']").find('option').each(function(){
+        $('.websiteSettingsFunctions').contents().find('select').not("[name='countryCode']").find('option').each(function(){
           if($(this).text() === "Vin65 Designer Launch Template") {
             setWebsiteID($(this).val());
             copyPagesBoolean = true;
@@ -65,6 +65,10 @@ exports.init = function() {
             copyPagesBoolean = true;
             return false;
           } else if($(this).text() === "Vin65 Pages Template IBG") {
+            setWebsiteID($(this).val());
+            copyPagesBoolean = true;
+            return false;
+          } else if($(this).text() === "Vin65 Development Kelton") {
             setWebsiteID($(this).val());
             copyPagesBoolean = true;
             return false;
@@ -132,17 +136,23 @@ exports.init = function() {
       this.wait(4000, function(){
         oneClick.addFrame("websiteSettingsFunctions", websiteSettingsPagesArray[8]);
       });
-      initSelectOptions();
       this.wait(1000, function() {
         this.evaluate(function(userInputWebsiteCountry) {
           $('.websiteSettingsFunctions').contents().find('[name="countryCode"]').val(userInputWebsiteCountry);
         }, userInputWebsiteCountry);
+      });
+      this.wait(2000, function() {
         initSelectOptions();
       });
-      initSubmit();
+      this.wait(1000, function() {
+        casper.withFrame('websiteSettingsFunctions', function() {
+          this.fill('[action="index.cfm?method=websiteSettings.editQuickSettingsSuccess"]', {}, true);
+        });
+      });
     });
     this.then(function() {
       this.wait(35000, function() {
+        this.capture("websiteSEttings.png");
         oneClick.addFrame("websiteFunctionsComplete");
       });
     });
