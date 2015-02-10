@@ -55,5 +55,6 @@ authentication.js
 
 # Images
 server/one-click-casper-scripts/designerLaunch/*.png
+server/*.png
 /*.png
 /*.jpg
