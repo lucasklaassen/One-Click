@@ -10,7 +10,6 @@ var vin65Template1Check = require('./vin65Template1Check');
 var vin65WebsiteSettingsFunctions = require('./vin65WebsiteSettingsFunctions');
 var vin65ParseCustomDrilldown = require('./vin65ParseCustomDrilldown');
 var twilio = require('./twilio');
-var twilioSendSupportEmail = require('./twilioSendSupportEmail');
 var utils = require('utils');
 
 // Casper Module

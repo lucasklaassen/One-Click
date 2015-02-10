@@ -1,0 +1,91 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'multipartyMiddleware' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 warn package.json karma-chrome-launcher@0.1.7 No README data
+5 warn package.json karma-coffee-preprocessor@0.2.1 No README data
+6 warn package.json karma-firefox-launcher@0.1.4 No README data
+7 warn package.json karma-phantomjs-launcher@0.1.4 No README data
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'multipartyMiddleware', null ]
+10 verbose cache add name=undefined spec="multipartyMiddleware" args=["multipartyMiddleware",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'multipartyMiddleware',
+11 verbose parsed url   path: 'multipartyMiddleware',
+11 verbose parsed url   href: 'multipartyMiddleware' }
+12 silly lockFile b06a9092-multipartyMiddleware multipartyMiddleware
+13 verbose lock multipartyMiddleware /Users/lucas/.npm/b06a9092-multipartyMiddleware.lock
+14 silly lockFile b06a9092-multipartyMiddleware multipartyMiddleware
+15 silly lockFile b06a9092-multipartyMiddleware multipartyMiddleware
+16 verbose addNamed [ 'multipartyMiddleware', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 024ba496-multipartyMiddleware multipartyMiddleware@
+19 verbose lock multipartyMiddleware@ /Users/lucas/.npm/024ba496-multipartyMiddleware.lock
+20 silly addNameRange { name: 'multipartyMiddleware', range: '*', hasData: false }
+21 verbose request where is /multipartyMiddleware
+22 verbose request registry https://registry.npmjs.org/
+23 verbose request id 58e82650424cd234
+24 verbose url raw /multipartyMiddleware
+25 verbose url resolving [ 'https://registry.npmjs.org/', './multipartyMiddleware' ]
+26 verbose url resolved https://registry.npmjs.org/multipartyMiddleware
+27 verbose request where is https://registry.npmjs.org/multipartyMiddleware
+28 info trying registry request attempt 1 at 14:35:16
+29 http GET https://registry.npmjs.org/multipartyMiddleware
+30 http 404 https://registry.npmjs.org/multipartyMiddleware
+31 verbose headers { date: 'Thu, 05 Feb 2015 22:35:16 GMT',
+31 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 verbose headers   'content-type': 'application/json',
+31 verbose headers   'cache-control': 'max-age=0',
+31 verbose headers   'content-length': '52',
+31 verbose headers   'accept-ranges': 'bytes',
+31 verbose headers   via: '1.1 varnish',
+31 verbose headers   age: '0',
+31 verbose headers   'x-served-by': 'cache-sjc3133-SJC',
+31 verbose headers   'x-cache': 'MISS',
+31 verbose headers   'x-cache-hits': '0',
+31 verbose headers   'x-timer': 'S1423175716.434572,VS0,VE84',
+31 verbose headers   'keep-alive': 'timeout=10, max=50',
+31 verbose headers   connection: 'Keep-Alive' }
+32 silly registry.get cb [ 404,
+32 silly registry.get   { date: 'Thu, 05 Feb 2015 22:35:16 GMT',
+32 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+32 silly registry.get     'content-type': 'application/json',
+32 silly registry.get     'cache-control': 'max-age=0',
+32 silly registry.get     'content-length': '52',
+32 silly registry.get     'accept-ranges': 'bytes',
+32 silly registry.get     via: '1.1 varnish',
+32 silly registry.get     age: '0',
+32 silly registry.get     'x-served-by': 'cache-sjc3133-SJC',
+32 silly registry.get     'x-cache': 'MISS',
+32 silly registry.get     'x-cache-hits': '0',
+32 silly registry.get     'x-timer': 'S1423175716.434572,VS0,VE84',
+32 silly registry.get     'keep-alive': 'timeout=10, max=50',
+32 silly registry.get     connection: 'Keep-Alive' } ]
+33 silly lockFile 024ba496-multipartyMiddleware multipartyMiddleware@
+34 silly lockFile 024ba496-multipartyMiddleware multipartyMiddleware@
+35 error 404 404 Not Found: multipartyMiddleware
+35 error 404
+35 error 404 'multipartyMiddleware' is not in the npm registry.
+35 error 404 You should bug the author to publish it
+35 error 404 It was specified as a dependency of 'one-click'
+35 error 404
+35 error 404 Note that you can also install from a
+35 error 404 tarball, folder, or http url, or git url.
+36 error System Darwin 14.1.0
+37 error command "node" "/usr/local/bin/npm" "install" "multipartyMiddleware"
+38 error cwd /Users/lucas/server-files/var/www/One-Click/server
+39 error node -v v0.10.35
+40 error npm -v 1.4.28
+41 error code E404
+42 verbose exit [ 1, true ]
