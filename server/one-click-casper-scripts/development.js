@@ -62,7 +62,7 @@ casper.start();
 //End Google Analytics//
 
 //Init Login and Validate//
-vin65LoginAndValidate.init();
+// vin65LoginAndValidate.init();
 //End Login and Validate//
 
 //Init Product Layout Defaults
@@ -70,7 +70,7 @@ vin65LoginAndValidate.init();
 //End Product Layout Defaults
 
 //Init Website Settings Functions
-vin65WebsiteSettingsFunctions.init();
+// vin65WebsiteSettingsFunctions.init();
 //End Website Settings Functions
 
 //Init Resource Bundle Defaults//
@@ -78,7 +78,7 @@ vin65WebsiteSettingsFunctions.init();
 //End Resource Bundle Defaults//
 
 //Init Parse Custom Drilldown//
-// vin65ParseCustomDrilldown.init();
+vin65ParseCustomDrilldown.init();
 //End Parse Custom Drilldown//
 
 //Init Vin65Plus Setup//

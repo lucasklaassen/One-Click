@@ -15,14 +15,15 @@ exports.init = function() {
   oneClick.addFrame("customDrilldown", "/index.cfm?method=layout.showLayout&go=%2Fsettings%2Findex%2Ecfm%3Fmethod%3Dsettings%2Eframes%26deepLink%3DdesignerLaunch");
   casper.then(function() {
     this.wait(4000, function() {
-      this.evaluate(function() {
-        $('.customDrilldown').contents().find("#iFramePopup").contents().find("select[name='ProductCustomDrilldown']").val("product-drilldown.htm");
-      });
-    });
-    this.wait(1000, function(){
       this.withFrame('customDrilldown', function() {
         this.withFrame('EditWindow', function() {
-          this.click("#parseFile");
+          this.evaluate(function() {
+            $('[name="ProductCustomDrilldown"]').val("product-drilldown.htm");
+          });
+          this.wait(2000, function() {
+            this.capture("test.png");
+            this.click("#parseFile");
+          });
         });
       });
     });
