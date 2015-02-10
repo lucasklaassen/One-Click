@@ -78,13 +78,13 @@ vin65LoginAndValidate.init();
 //End Resource Bundle Defaults//
 
 //Init Parse Custom Drilldown//
-// vin65ParseCustomDrilldown.init();
+vin65ParseCustomDrilldown.init();
 //End Parse Custom Drilldown//
 
 //Init Vin65Plus Setup//
-if(vin65plus) {
-  twilio.init();
-}
+// if(vin65plus) {
+//   twilio.init();
+// }
 //End Vin65Plus Setup//
 
 casper.run();
